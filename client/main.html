@@ -12,7 +12,7 @@
 <template name="home">
   <h1>Movies List</h1>
   {{#each movies}}
-  
+
   <div class="flex">
  
     <img src="https://www.themoviedb.org/t/p/w440_and_h660_face{{poster_path}}"> 
@@ -22,6 +22,11 @@
 
      <h3>{{title}}</h3>
      <li>{{overview}}</li>
+     <button data-id="{{id}}">Like</button>
+     <p>
+       Like: {{Like}}
+     </p>
+
 
     </div>
    {{/each }}

@@ -18,3 +18,36 @@ Template.home.helpers({
         return Template.instance().movies.get();
     }
 });
+
+Template.home.events({
+
+    'click button' (event, instance) {
+
+        const idMovie = event.currentTarget.dataset.id;
+
+        Like(idMovie, Template.instance().movies);
+    }
+});
+
+function Like(idMovie, movies) {
+
+    HTTP.call('PUT', 'http://localhost:3000/api/like/' + idMovie, {},
+        function(error, response) {
+            const index = movies.get().findIndex(function(item) {
+
+                return item.id === JSON.parse(response.content).Like;
+            })
+
+
+            if (index > -1) {
+
+                let newMoviesList = movies.get();
+
+                newMoviesList[index].like = JSON.parse(response.content).like;
+
+                movies.set(newMoviesList);
+
+            }
+
+        });
+}
