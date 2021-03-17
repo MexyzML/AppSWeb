@@ -5,25 +5,25 @@
 <body>
     <h1>Welcome to Meteor!</h1>
 
-    {{> hello}} {{> info}}
+    {{> home}}
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
-</template>
 
-<template name="info">
-  <h2>Learn Meteor!</h2>
-  <ul>
-    <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
-    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
-    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
-    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
-  </ul>
+<template name="home">
   <h1>Movies List</h1>
   {{#each movies}}
-  <h3>{{title}}</h3>
-  <li>{{overview}}</li>
-  {{/each }}
+  
+  <div class="flex">
+ 
+    <img src="https://www.themoviedb.org/t/p/w440_and_h660_face{{poster_path}}"> 
+  </div>
+   <div class="flex">
+
+
+     <h3>{{title}}</h3>
+     <li>{{overview}}</li>
+
+    </div>
+   {{/each }}
+
 </template>

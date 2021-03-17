@@ -1,5 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { localDatas } from './local-datas.js';
+import { WebApp } from 'meteor/webapp';
+import { HTTP } from 'meteor/http';
+//import { SERVER_CONFIG } from './server.config';
 
 
 
