@@ -1,8 +1,14 @@
 import { Meteor } from 'meteor/meteor';
 import { localDatas } from './local-datas.js';
 import { WebApp } from 'meteor/webapp';
+import { Mongo } from 'meteor/mongo';
+
 import { HTTP } from 'meteor/http';
-//import { SERVER_CONFIG } from './server.config';
+import { SERVER_CONFIG } from './server.config';
+import { utils } from './utils';
+
+const likesCollection = new Mongo.Collection('likes');
+
 
 
 
@@ -27,8 +33,19 @@ WebApp.connectHandlers.use('/api/like', (req, res, next) => {
 
             const idMovie = utils.getIdMovieFromPathParams(req.url);
 
+            toReturn = updateLikeMovie(parseInt(idMovie));
+
+            res.writeHead(200);
+
+            res.write(JSON.stringify(toReturn));
+
+            break;
+
+        default:
+
+            break;
+
     }
 
-    res.writeHead(200);
-    res.end(JSON.stringify(localDatas));
+    res.end();
 });
