@@ -7,7 +7,7 @@ import './main.html';
 Template.home.onCreated(function homeOnCreated() {
     let ctrl = this;
     this.movies = new ReactiveVar();
-    HTTP.call('GET', 'https://api.themoviedb.org/3/discover/movie?api_key=1793c4843a64fbd6fdba88ce08e45c5f&language=fr-FR', {},
+    HTTP.call('GET', 'http://localhost:3000/api/discover/movie', {},
         function(error, response) {
             // Handle the error or response here.
             ctrl.movies.set(JSON.parse(response.content).results)
@@ -25,17 +25,18 @@ Template.home.events({
 
         const idMovie = event.currentTarget.dataset.id;
 
-        Like(idMovie, Template.instance().movies);
+        updateLikeMovie(idMovie, Template.instance().movies);
     }
 });
 
-function Like(idMovie, movies) {
+
+function updateLikeMovie(idMovie, movies) {
 
     HTTP.call('PUT', 'http://localhost:3000/api/like/' + idMovie, {},
         function(error, response) {
             const index = movies.get().findIndex(function(item) {
 
-                return item.id === JSON.parse(response.content).Like;
+                return item.id === JSON.parse(response.content).id;
             })
 
 
