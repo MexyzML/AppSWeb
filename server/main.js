@@ -7,8 +7,6 @@ import { SERVER_CONFIG } from './server.config';
 import { utils } from './utils';
 
 const LikesCollection = new Mongo.Collection('likes');
-
-
 Meteor.startup(() => {});
 
 WebApp.connectHandlers.use('/api/discover/movie', (req, res, next) => {
@@ -17,21 +15,21 @@ WebApp.connectHandlers.use('/api/discover/movie', (req, res, next) => {
         function(error, response) {
 
             let newResponse = response.data;
-            newResponse.results.forEach(function(movieRessources) {
+            // newResponse.results.forEach(function(movieRessources) {
 
-                let dbRessource = LikesCollection.findOne({ id: movieRessources.id });
+            let dbRessource = LikesCollection.findOne({ id: movieRessources.id });
 
 
-                if (dbRessource) {
+            if (dbRessource) {
 
-                    movieRessources.like = dbRessource.like
+                movieRessources.like = dbRessource.like
 
-                } else {
+            } else {
 
-                    movieRessources.like = 0;
+                movieRessources.like = 0;
 
-                }
-            });
+            }
+            //   });
 
             res.writeHead(200);
             res.write(JSON.stringify(newResponse));

@@ -1,4 +1,4 @@
-import { SERVER_CONFIG } from './server.config'
+import { SERVER_CONFIG } from './server.config';
 
 export const utils = {
     themovieDBurl: _themovieDBurl,
@@ -12,7 +12,7 @@ function _themovieDBurl(key) {
     switch (key) {
 
         case 'discover':
-            url = SERVER_CONFIG.themoviedb_api_config.base_url + 'discover/movie?api_key' + SERVER_CONFIG.themoviedb_api_config.api_key + '%language=' + SERVER_CONFIG.themoviedb_api_config.language;
+            url = SERVER_CONFIG.themoviedb_api_config.base_url + 'discover/movie?api_key=' + SERVER_CONFIG.themoviedb_api_config.api_key + '%language=' + SERVER_CONFIG.themoviedb_api_config.language;
     }
     return url;
 }
